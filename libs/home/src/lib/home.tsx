@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './home.scss';
 
@@ -6,6 +6,13 @@ import './home.scss';
 export interface HomeProps {}
 
 export const Home = (props: HomeProps) => {
+  useEffect(() => {
+    fetch('/api')
+      .then((_) => _.json())
+      .then((data) => {
+        console.log('/api', data);
+      });
+  }, []);
   return (
     <div>
       <h1>Welcome to home from lib!</h1>

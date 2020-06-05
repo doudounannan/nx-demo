@@ -51,7 +51,8 @@
         "serve": {
           "builder": "@nrwl/web:dev-server",
           "options": {
-            "buildTarget": "nx-demo:build"
+            "buildTarget": "nx-demo:build",
+            "proxyConfig": "apps/nx-demo/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -161,6 +162,63 @@
           "options": {
             "jestConfig": "libs/gifs/jest.config.js",
             "tsConfig": "libs/gifs/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "node-demo": {
+      "root": "apps/node-demo",
+      "sourceRoot": "apps/node-demo/src",
+      "projectType": "application",
+      "prefix": "node-demo",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/node-demo",
+            "main": "apps/node-demo/src/main.ts",
+            "tsConfig": "apps/node-demo/tsconfig.app.json",
+            "assets": ["apps/node-demo/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/node-demo/src/environments/environment.ts",
+                  "with": "apps/node-demo/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "node-demo:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/node-demo/.eslintrc",
+            "tsConfig": [
+              "apps/node-demo/tsconfig.app.json",
+              "apps/node-demo/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/node-demo/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/node-demo/jest.config.js",
+            "tsConfig": "apps/node-demo/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
