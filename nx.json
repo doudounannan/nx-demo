@@ -25,6 +25,12 @@
     "nx-demo-e2e": {
       "tags": [],
       "implicitDependencies": ["nx-demo"]
+    },
+    "home": {
+      "tags": []
+    },
+    "gifs": {
+      "tags": []
     }
   }
 }

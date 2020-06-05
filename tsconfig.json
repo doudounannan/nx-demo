@@ -15,7 +15,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@nx-demo/home": ["libs/home/src/index.ts"],
+      "@nx-demo/gifs": ["libs/gifs/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
