@@ -12,8 +12,7 @@ export const Gifs = (props: GifsProps) => {
   const [query, setQuery] = React.useState('');
 
   const getFetchUrl = useCallback(
-    () =>
-      `https://api.giphy.com/v1/gifs/search?api_key=${props.apiKey}&q=${query}`,
+    () => `/v1/gifs/search?api_key=${props.apiKey}&q=${query}`,
     [query]
   );
 

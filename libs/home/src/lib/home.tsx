@@ -7,7 +7,7 @@ export interface HomeProps {}
 
 export const Home = (props: HomeProps) => {
   useEffect(() => {
-    fetch('/api')
+    fetch('/api/users/user/info')
       .then((_) => _.json())
       .then((data) => {
         console.log('/api', data);
